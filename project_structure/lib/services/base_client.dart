@@ -116,7 +116,7 @@ class BaseClient {
 
 
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-    print('JWT decodedToken: ${decodedToken.toString()}');
+    print('JWT decodedToken:\n ${decodedToken.toString()}');
 
     return token;
   }
