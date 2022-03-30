@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:project_structure/utils/secrets.dart';
+import 'package:project_structure/services/secrets.dart';
 import 'app_exceptions.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
@@ -14,6 +14,8 @@ class BaseClient {
   static final BaseClient _instance = BaseClient._internal();
 
   static const int TIME_OUT_DURATION = 20;
+
+  String token = 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJhY0J5RXd3LVR0YW9MWFo0cW81MUV3IiwidHMiOjE2NDg2NTM3ODd9.ACl1x14O8JfOnL07uiGQFiLQ2yKdylqNl1vZedeWFtjlEMJObcorpKXWthUyu1DzfaFzPl-yY_hI0Cx07-98Qg';
 
   final String _apiBaseURL = 'http://api.saigonshippers.com';
   final String _clientID = secretClientID;
@@ -38,8 +40,7 @@ class BaseClient {
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json',
         'Accept-Language': 'vi_VN',
-        'User-Agent': _userAgent(),
-        'Authorization': 'Bearer ' + _generateClientToken(),
+        'Authorization': 'Bearer ' + token,
       };
   }
   //GET
