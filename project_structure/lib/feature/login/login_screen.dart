@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_structure/controllers/login_controller.dart';
+import 'package:project_structure/feature/login/login_controller.dart';
 import 'package:project_structure/utils/dimensions.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetView<LoginController> {
   var _phoneNumber = '';
   var _password = '';
-  late LoginController loginController = Get.find<LoginController>();
+  // late LoginController loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,7 @@ class LoginScreen extends StatelessWidget {
             margin: EdgeInsets.only(top: 20),
             child: ElevatedButton(
               onPressed: () {
-                print('phone number: $_phoneNumber');
-                print('password: $_password');
-                //loginController.getData();
-                loginController.login('0198558833', '12345678');
+                controller.login('0198558833', '12345678');
               },
               child: Text('Login', style: TextStyle(fontSize: 24)),
             ),

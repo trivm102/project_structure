@@ -1,6 +1,7 @@
 
-import '../services/app_exceptions.dart';
-import '../views/dialogs/dialog_helper.dart';
+import '../data/utils/app_exceptions.dart';
+import 'dialogs/dialog_helper.dart';
+
 
 class BaseController {
   void handleError(error) {
@@ -14,6 +15,9 @@ class BaseController {
     } else if (error is ApiNotRespondingException) {
       DialogHelper.showErroDialog(
           description: 'Oops! It took longer to respond.');
+    } else {
+      DialogHelper.showErroDialog(
+          description: 'please try again later.');
     }
   }
 
