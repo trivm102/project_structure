@@ -14,6 +14,7 @@ class LoginScreen extends GetView<LoginController> {
   var _password = '';
   String dogFoodUrl = 'https://www.svgrepo.com/show/3682/dog-food.svg';
   // late LoginController loginController = Get.find<LoginController>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +25,32 @@ class LoginScreen extends GetView<LoginController> {
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RoundedInputField(
-                  hintText: 'Phone', 
-                  icon: Icons.phone, 
-                  onTextChanged: (text) {
-                    _phoneNumber = text;
-                  }
-                ),
-                RoundedInputField(
-                  hintText: 'Password', 
-                  icon: Icons.password, 
-                  onTextChanged: (text) {
-                    _password = text;
-                  }
-                )
-              ],
+            key: _formKey, 
+            padding: const EdgeInsets.only(top: 50),
+            child: Form(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  RoundedInputField(
+                    hintText: 'Phone', 
+                    icon: Icons.phone, 
+                    onTextChanged: (text) {
+                      _phoneNumber = text;
+                    }
+                  ),
+                  RoundedInputField(
+                    hintText: 'Password', 
+                    icon: Icons.password, 
+                    onTextChanged: (text) {
+                      _password = text;
+                    }
+                  ),
+                  ElevatedButton(onPressed: () {
+                    Get.lazyPut(() => MainController());
+                    Get.offAll(() => const MainScreen());
+                  }, child: const Text('Login')),
+                ],
+              ),
             ),
           ),
         ),

@@ -16,14 +16,20 @@ class RoundedInputField extends StatelessWidget {
       child: TextFormField(
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
-          icon: Icon(
+          prefixIcon: Icon(
             icon, color: 
             kPrimaryColor), 
           hintText: hintText, 
           hintStyle: const TextStyle(fontFamily: 'OpenSans'),
-          border: InputBorder.none),
+          border: const OutlineInputBorder()),
           onChanged: (value) => {
             onTextChanged(value)
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
           },
       )
     );
