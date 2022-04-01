@@ -67,6 +67,11 @@ flutter:
     - assets/images/img1990.jpeg
     - assets/images/Firefox_Logo_2017.svg
 
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

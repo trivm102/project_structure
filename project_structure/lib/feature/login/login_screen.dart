@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:project_structure/core/widgets/rounded_input_field.dart';
 import 'package:project_structure/feature/login/login_controller.dart';
 import 'package:project_structure/feature/main/main_controller.dart';
 import 'package:project_structure/feature/main/main_screen.dart';
@@ -17,59 +18,34 @@ class LoginScreen extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: size.height,
-        child: Column( mainAxisAlignment: MainAxisAlignment.center, 
-        children: [
-          Container(
-            width: size.width * 0.8,
-            height: 50,
-            child: TextField(
-              onChanged: (value) {
-                  _phoneNumber = value;
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Phone Number',
-              ),
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                RoundedInputField(
+                  hintText: 'Phone', 
+                  icon: Icons.phone, 
+                  onTextChanged: (text) {
+                    _phoneNumber = text;
+                  }
+                ),
+                RoundedInputField(
+                  hintText: 'Password', 
+                  icon: Icons.password, 
+                  onTextChanged: (text) {
+                    _password = text;
+                  }
+                )
+              ],
             ),
           ),
-          Container(
-            width: Dimensions.textFieldWidth,
-            height: 50,
-            margin: EdgeInsets.only(top: 20),
-            child: TextField(
-              obscureText: true,
-              onChanged: (value) {
-                  _password = value;
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Password',
-              ),
-            ),
-          ),
-          Container(
-            width: Dimensions.textFieldWidth,
-            height: 50,
-            margin: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              onPressed: () {
-                //controller.login('0198558833', '12345678');
-                Get.lazyPut(() => MainController());
-                Get.offAll(() => const MainScreen());
-              },
-              child: Text('Login', style: TextStyle(fontSize: 24)),
-            ),
-          ),
-          Container(
-            child: SvgPicture.asset('assets/images/Firefox_Logo_2017.svg', 
-           width: 50, height: 50),
-          )
-        ])
         ),
-      );
+      ),
+    );
   }
 }
