@@ -7,6 +7,8 @@ import 'package:project_structure/feature/login/login_controller.dart';
 import 'package:project_structure/feature/main/main_controller.dart';
 import 'package:project_structure/feature/main/main_screen.dart';
 import 'package:project_structure/helper/image_helper.dart';
+import 'package:project_structure/navigation/main_navigation.dart';
+import 'package:project_structure/navigation/main_navigation_imp.dart';
 import 'package:project_structure/utils/dimensions.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -15,6 +17,7 @@ class LoginScreen extends GetView<LoginController> {
   String dogFoodUrl = 'https://www.svgrepo.com/show/3682/dog-food.svg';
   // late LoginController loginController = Get.find<LoginController>();
   final _formKey = GlobalKey<FormState>();
+  late  MainNavigation mainNavigation = Get.find<MainNavigationImp>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +49,7 @@ class LoginScreen extends GetView<LoginController> {
                     }
                   ),
                   ElevatedButton(onPressed: () {
-                    Get.lazyPut(() => MainController());
-                    Get.offAll(() => const MainScreen());
+                    mainNavigation.gotoMainScreen();
                   }, child: const Text('Login')),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:project_structure/feature/login/login_binding.dart';
 import 'package:project_structure/feature/login/login_screen.dart';
 import 'package:project_structure/feature/main/main_binding.dart';
 import 'package:project_structure/feature/main/main_screen.dart';
+import 'package:project_structure/navigation/routes.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +30,4 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.LOGIN,
     );
   }
-}
-
-class AppPages {
-  static var list = [ GetPage(name: AppRoutes.LOGIN, page: ()  => LoginScreen(), binding: LoginBinding())];
-}
-
-class AppRoutes {
-  static const String LOGIN = '/login';
 }
